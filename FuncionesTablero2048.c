@@ -3,35 +3,34 @@
 #include <stdlib.h>
 
 // Creo un tablero de n x n
-Tablero *crearTablero(int n) {
-    Tablero *t = (Tablero *)malloc(sizeof(Tablero));
-    t->dimension = n;
-    t->celdas = (int **)malloc(n * sizeof(int *));
+Tablero crearTablero(int n) {
+    Tablero t;
+    t.dimension = n;
+    t.celdas = (int **)malloc(n * sizeof(int *));
     
     for (int i = 0; i < n; i++) {
-        t->celdas[i] = (int *)malloc(n * sizeof(int));
+        t.celdas[i] = (int *)malloc(n * sizeof(int));
         for (int j = 0; j < n; j++) {
-            t->celdas[i][j] = 0;
+            t.celdas[i][j] = 0;
         }
     }
     return t;
 }
 
 // Destruir el tablero y liberar espacio en memoria
-void destruirTablero(Tablero *t) {
-    for (int i = 0; i < t->dimension; i++) {
-        free(t->celdas[i]);
+void destruirTablero(Tablero t) {
+    for (int i = 0; i < t.dimension; i++) {
+        free(t.celdas[i]);
     }
-    free(t->celdas);
-    free(t);
+    free(t.celdas);
 }
 
 // Mostrar el tablero en pantalla
-void mostrarTablero(Tablero *t) {
+void mostrarTablero(Tablero t) {
     printf("\n");
-    for (int i = 0; i < t->dimension; i++) {
-        for (int j = 0; j < t->dimension; j++) {
-            printf("%5d", t->celdas[i][j]);
+    for (int i = 0; i < t.dimension; i++) {
+        for (int j = 0; j < t.dimension; j++) {
+            printf("%5d", t.celdas[i][j]);
         }
         printf("\n");
     }
@@ -39,7 +38,7 @@ void mostrarTablero(Tablero *t) {
 }
 
 // Agregar una casilla (2 o 4) aleatoria en una posicion aleatoria
-void agregarCasillaAleatoria(Tablero *t, int n) {
+void agregarCasillaAleatoria(Tablero t, int n) {
     int fila, columna;
     int encontrado = 0;
     
@@ -47,14 +46,14 @@ void agregarCasillaAleatoria(Tablero *t, int n) {
     while (!encontrado) {
         fila = rand() % n;
         columna = rand() % n;
-        if (t->celdas[fila][columna] == 0) {
+        if (t.celdas[fila][columna] == 0) {
             encontrado = 1;
         }
     }
     
-    // Agregar 2 o 4 (75% probabilidad 2, 25% probabilidad 4)
+    // Agregar 2 o 4 (75% de probabilidad 2, 25% de probabilidad 4)
     int valor = (rand() % 4 == 0) ? 4 : 2;
-    t->celdas[fila][columna] = valor;
+    t.celdas[fila][columna] = valor;
 }
 
 // Función auxiliar para comprimir una fila (eliminar ceros)
@@ -91,101 +90,150 @@ static void fusionarFila(int *fila, int n) {
 }
 
 // MOVER A LA IZQUIERDA
-void moverIzquierda(Tablero *t) {
-    for (int i = 0; i < t->dimension; i++) {
+void moverIzquierda(Tablero t) {
+    for (int i = 0; i < t.dimension; i++) {
         // Comprimir la fila (eliminar ceros)
-        comprimirFila(t->celdas[i], t->dimension);
+        comprimirFila(t.celdas[i], t.dimension);
         // Fusionar valores iguales
-        fusionarFila(t->celdas[i], t->dimension);
+        fusionarFila(t.celdas[i], t.dimension);
         // Comprimir nuevamente después de fusionar
-        comprimirFila(t->celdas[i], t->dimension);
+        comprimirFila(t.celdas[i], t.dimension);
     }
 }
 
 // MOVER A LA DERECHA
-void moverDerecha(Tablero *t) {
-    for (int i = 0; i < t->dimension; i++) {
+void moverDerecha(Tablero t) {
+    for (int i = 0; i < t.dimension; i++) {
         // Invertir la fila
-        for (int j = 0; j < t->dimension / 2; j++) {
-            int temp = t->celdas[i][j];
-            t->celdas[i][j] = t->celdas[i][t->dimension - 1 - j];
-            t->celdas[i][t->dimension - 1 - j] = temp;
+        for (int j = 0; j < t.dimension / 2; j++) {
+            int temp = t.celdas[i][j];
+            t.celdas[i][j] = t.celdas[i][t.dimension - 1 - j];
+            t.celdas[i][t.dimension - 1 - j] = temp;
         }
         // Comprimir
-        comprimirFila(t->celdas[i], t->dimension);
+        comprimirFila(t.celdas[i], t.dimension);
         // Fusionar
-        fusionarFila(t->celdas[i], t->dimension);
+        fusionarFila(t.celdas[i], t.dimension);
         // Comprimir nuevamente
-        comprimirFila(t->celdas[i], t->dimension);
+        comprimirFila(t.celdas[i], t.dimension);
         // Invertir de vuelta
-        for (int j = 0; j < t->dimension / 2; j++) {
-            int temp = t->celdas[i][j];
-            t->celdas[i][j] = t->celdas[i][t->dimension - 1 - j];
-            t->celdas[i][t->dimension - 1 - j] = temp;
+        for (int j = 0; j < t.dimension / 2; j++) {
+            int temp = t.celdas[i][j];
+            t.celdas[i][j] = t.celdas[i][t.dimension - 1 - j];
+            t.celdas[i][t.dimension - 1 - j] = temp;
         }
     }
 }
 
 // MOVER ARRIBA
-void moverArriba(Tablero *t) {
+void moverArriba(Tablero t) {
     // Trabajar por columnas
-    for (int j = 0; j < t->dimension; j++) {
-        int columna[t->dimension];
+    for (int j = 0; j < t.dimension; j++) {
+        int columna[t.dimension];
         
         // Extraer columna
-        for (int i = 0; i < t->dimension; i++) {
-            columna[i] = t->celdas[i][j];
+        for (int i = 0; i < t.dimension; i++) {
+            columna[i] = t.celdas[i][j];
         }
         
         // Comprimir
-        comprimirFila(columna, t->dimension);
+        comprimirFila(columna, t.dimension);
         // Fusionar
-        fusionarFila(columna, t->dimension);
+        fusionarFila(columna, t.dimension);
         // Comprimir nuevamente
-        comprimirFila(columna, t->dimension);
+        comprimirFila(columna, t.dimension);
         
         // Poner columna de vuelta
-        for (int i = 0; i < t->dimension; i++) {
-            t->celdas[i][j] = columna[i];
+        for (int i = 0; i < t.dimension; i++) {
+            t.celdas[i][j] = columna[i];
         }
     }
 }
 
 // MOVER ABAJO
-void moverAbajo(Tablero *t) {
+void moverAbajo(Tablero t) {
     // Trabajar por columnas
-    for (int j = 0; j < t->dimension; j++) {
-        int columna[t->dimension];
+    for (int j = 0; j < t.dimension; j++) {
+        int columna[t.dimension];
         
         // Extraer columna
-        for (int i = 0; i < t->dimension; i++) {
-            columna[i] = t->celdas[i][j];
+        for (int i = 0; i < t.dimension; i++) {
+            columna[i] = t.celdas[i][j];
         }
         
         // Invertir columna
-        for (int i = 0; i < t->dimension / 2; i++) {
+        for (int i = 0; i < t.dimension / 2; i++) {
             int temp = columna[i];
-            columna[i] = columna[t->dimension - 1 - i];
-            columna[t->dimension - 1 - i] = temp;
+            columna[i] = columna[t.dimension - 1 - i];
+            columna[t.dimension - 1 - i] = temp;
         }
         
         // Comprimir
-        comprimirFila(columna, t->dimension);
+        comprimirFila(columna, t.dimension);
         // Fusionar
-        fusionarFila(columna, t->dimension);
+        fusionarFila(columna, t.dimension);
         // Comprimir denuevo
-        comprimirFila(columna, t->dimension);
+        comprimirFila(columna, t.dimension);
         
         // Invertir columna de vuelta
-        for (int i = 0; i < t->dimension / 2; i++) {
+        for (int i = 0; i < t.dimension / 2; i++) {
             int temp = columna[i];
-            columna[i] = columna[t->dimension - 1 - i];
-            columna[t->dimension - 1 - i] = temp;
+            columna[i] = columna[t.dimension - 1 - i];
+            columna[t.dimension - 1 - i] = temp;
         }
         
         // Poner columna de vuelta
-        for (int i = 0; i < t->dimension; i++) {
-            t->celdas[i][j] = columna[i];
+        for (int i = 0; i < t.dimension; i++) {
+            t.celdas[i][j] = columna[i];
         }
     }
 }
+
+// VERIFICAR VICTORIA - Busca si existe un 2048 en el tablero
+int verificarVictoria(Tablero t) {
+    for (int i = 0; i < t.dimension; i++) {
+        for (int j = 0; j < t.dimension; j++) {
+            if (t.celdas[i][j] == 2048) {
+                return 1;  // Victoria
+            }
+        }
+    }
+    return 0;  // No hay victoria aún
+}
+
+// VERIFICAR TABLERO LLENO - Retorna 1 si todas las celdas están ocupadas
+int tableroLleno(Tablero t) {
+    for (int i = 0; i < t.dimension; i++) {
+        for (int j = 0; j < t.dimension; j++) {
+            if (t.celdas[i][j] == 0) {
+                return 0;  // Hay celdas vacías
+            }
+        }
+    }
+    return 1;  // Tablero lleno
+}
+
+// VERIFICAR DERROTA - Retorna 1 si no hay movimientos posibles
+int verificarDerrota(Tablero t) {
+    // Si hay celdas vacías, siempre hay movimientos posibles
+    if (!tableroLleno(t)) {
+        return 0;
+    }
+    
+    // Verificar si hay celdas adyacentes con valores iguales
+    for (int i = 0; i < t.dimension; i++) {
+        for (int j = 0; j < t.dimension; j++) {
+            // Verificar celda a la derecha
+            if (j < t.dimension - 1 && t.celdas[i][j] == t.celdas[i][j + 1]) {
+                return 0;  // Hay movimiento posible
+            }
+            // Verificar celda abajo
+            if (i < t.dimension - 1 && t.celdas[i][j] == t.celdas[i + 1][j]) {
+                return 0;  // Hay movimiento posible
+            }
+        }
+    }
+    
+    return 1;  // No hay mas movimientos posibles, indica que perdiste
+}
+
