@@ -12,7 +12,7 @@ int main()
 
   srand(time(NULL));
 
-  int **tablero;
+  int *tablero;
   tablero = crearTablero(n);
 
   agregarFichaAleatoria(tablero, n);
