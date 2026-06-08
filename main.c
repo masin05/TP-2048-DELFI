@@ -13,6 +13,8 @@ int main()
   srand(time(NULL));
 
   int *tablero;
+  //tablero = malloc(n * n * sizeof(int));
+  //tablero[i * n + j]; para entrar a las posiciones
   tablero = crearTablero(n);
 
   agregarFichaAleatoria(tablero, n);
