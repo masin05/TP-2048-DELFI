@@ -20,5 +20,9 @@ int main()
   agregarFichaAleatoria(tablero, n);
   agregarFichaAleatoria(tablero, n);
 
-  char opcion;
+  //char opcion;
+
+  liberarTablero(tablero);
+
+  return 0;
 }
