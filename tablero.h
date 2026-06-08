@@ -6,15 +6,20 @@ typedef struct {
     int dimension;
 } Tablero;
 
-int *crearTablero(int n);
-void liberarTablero(int *tablero);
+Tablero crearTablero(int n);
+void destruirTablero(Tablero t);
 
-void mostrarTablero(int *tablero, int n);
+void mostrarTablero(Tablero t);
+void agregarCasillaAleatoria(Tablero t, int n);
 
-void agregarFichaAleatoria(int *tablero, int n);
-int contarCasillasLibres(int *tablero, int n);
+void moverIzquierda(Tablero t);
+void moverDerecha(Tablero t);
+void moverArriba(Tablero t);
+void moverAbajo(Tablero t);
 
-void moverIzquierda(int *tablero, int n);
-void moverDerecha(int *tablero, int n);
-void moverArriba(int *tablero, int n);
-void moverAbajo(int *tablero, int n);
+// Funciones de control de juego
+int verificarVictoria(Tablero t);  // Retorna 1 si hay un 2048, 0 si no
+int verificarDerrota(Tablero t);   // Retorna 1 si no hay movimientos posibles, 0 si hay
+int tableroLleno(Tablero t);       // Retorna 1 si todas las celdas están ocupadas, 0 si hay celdas vacías
+
+#endif
