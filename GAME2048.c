@@ -54,11 +54,9 @@ int main()
         moverAbajo(tablero);
         agregarCasillaAleatoria(tablero, n);
         break;
-
-      case 'q':
-        printf("¡Gracias por jugar!\n");
-        destruirTablero(tablero);
-        return 0;
+      
+      case 'u':
+        //deshacerMovimiento();
 
       default:
         printf("Opcion no valida\n");
