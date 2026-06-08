@@ -14,10 +14,10 @@ int main()
 
   srand(time(NULL));
 
-  Tablero *tablero = crearTablero(n);
+  Tablero tablero = crearTablero(n);
 
-  agregarFichaAleatoria(tablero, n);
-  agregarFichaAleatoria(tablero, n);
+  agregarCasillaAleatoria(tablero, n);
+  agregarCasillaAleatoria(tablero, n);
 
   char opcion;
   
@@ -31,6 +31,20 @@ int main()
   while (1) {
     mostrarTablero(tablero);
     
+    // Verificar victoria
+    if (verificarVictoria(tablero)) {
+      printf("\n¡¡¡ GANASTE :) !!!\n");
+      destruirTablero(tablero);
+      return 0;
+    }
+    
+    // Verificar derrota
+    if (verificarDerrota(tablero)) {
+      printf("\n¡¡¡ PERDISTE :( !!! \n");
+      destruirTablero(tablero);
+      return 0;
+    }
+    
     printf("Ingrese su movimiento (a/d/w/s/q): ");
     scanf(" %c", &opcion);
     
@@ -38,22 +52,26 @@ int main()
 
       case 'a':
         moverIzquierda(tablero);
-        agregarFichaAleatoria(tablero, n);
+        agregarCasillaAleatoria(tablero, n);
+        agregarCasillaAleatoria(tablero, n);
         break;
 
       case 'd':
         moverDerecha(tablero);
-        agregarFichaAleatoria(tablero, n);
+        agregarCasillaAleatoria(tablero, n);
+        agregarCasillaAleatoria(tablero, n);
         break;
 
       case 'w':
         moverArriba(tablero);
-        agregarFichaAleatoria(tablero, n);
+        agregarCasillaAleatoria(tablero, n);
+        agregarCasillaAleatoria(tablero, n);
         break;
 
       case 's':
         moverAbajo(tablero);
-        agregarFichaAleatoria(tablero, n);
+        agregarCasillaAleatoria(tablero, n);
+        agregarCasillaAleatoria(tablero, n);
         break;
 
       case 'q':
