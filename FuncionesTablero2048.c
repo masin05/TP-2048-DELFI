@@ -214,26 +214,25 @@ int tableroLleno(Tablero t) {
 }
 
 // VERIFICAR DERROTA - Retorna 1 si no hay movimientos posibles
-int verificarDerrota(Tablero t) {
-    // Si hay celdas vacías, siempre hay movimientos posibles
-    if (!tableroLleno(t)) {
+int verificarDerrota(Tablero t)
+{
+    if (!tableroLleno(t))
+    {
         return 0;
     }
-    
-    // Verificar si hay celdas adyacentes con valores iguales
-    for (int i = 0; i < t.dimension; i++) {
-        for (int j = 0; j < t.dimension; j++) {
-            // Verificar celda a la derecha
-            if (j < t.dimension - 1 && t.celdas[i][j] == t.celdas[i][j + 1]) {
-                return 0;  // Hay movimiento posible
+    for (int i = 0; i < t.dimension; i++){
+        for (int j = 0; j < t.dimension; j++){
+            if (j < t.dimension - 1 &&
+                t.celdas[i][j] == t.celdas[i][j + 1])
+            {
+                return 0;
             }
-            // Verificar celda abajo
-            if (i < t.dimension - 1 && t.celdas[i][j] == t.celdas[i + 1][j]) {
-                return 0;  // Hay movimiento posible
+            if (i < t.dimension - 1 &&
+                t.celdas[i][j] == t.celdas[i + 1][j])
+            {
+                return 0;
             }
         }
     }
-    
-    return 1;  // No hay mas movimientos posibles, indica que perdiste
+    return 1;
 }
-
