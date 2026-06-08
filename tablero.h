@@ -6,12 +6,15 @@ typedef struct {
     int dimension;
 } Tablero;
 
-Tablero *crearTablero(int n);
-void destruirTablero(Tablero *t);
+int *crearTablero(int n);
+void liberarTablero(int *tablero);
 
-void mostrarTablero(Tablero *t);
+void mostrarTablero(int *tablero, int n);
 
-void moverIzquierda(Tablero *t);
-void moverDerecha(Tablero *t);
-void moverArriba(Tablero *t);
-void moverAbajo(Tablero *t);
+void agregarFichaAleatoria(int *tablero, int n);
+int contarCasillasLibres(int *tablero, int n);
+
+void moverIzquierda(int *tablero, int n);
+void moverDerecha(int *tablero, int n);
+void moverArriba(int *tablero, int n);
+void moverAbajo(int *tablero, int n);
