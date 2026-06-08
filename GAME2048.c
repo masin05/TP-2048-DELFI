@@ -30,7 +30,39 @@ int main()
 
   while (1) {
     mostrarTablero(tablero);
+    printf("Ingrese su movimiento (a/d/w/s/q): ");
+    scanf(" %c", &opcion);
     
+    switch (opcion) {
+
+      case 'a':
+        moverIzquierda(tablero);
+        agregarCasillaAleatoria(tablero, n);
+        break;
+
+      case 'd':
+        moverDerecha(tablero);
+        agregarCasillaAleatoria(tablero, n);
+        break;
+
+      case 'w':
+        moverArriba(tablero);
+        agregarCasillaAleatoria(tablero, n);
+        break;
+
+      case 's':
+        moverAbajo(tablero);
+        agregarCasillaAleatoria(tablero, n);
+        break;
+
+      case 'q':
+        printf("¡Gracias por jugar!\n");
+        destruirTablero(tablero);
+        return 0;
+
+      default:
+        printf("Opcion no valida\n");
+    }
     // Verificar victoria
     if (verificarVictoria(tablero)) {
       printf("\n¡¡¡ GANASTE :) !!!\n");
@@ -44,45 +76,6 @@ int main()
       destruirTablero(tablero);
       return 0;
     }
-    
-    printf("Ingrese su movimiento (a/d/w/s/q): ");
-    scanf(" %c", &opcion);
-    
-    switch (opcion) {
-
-      case 'a':
-        moverIzquierda(tablero);
-        agregarCasillaAleatoria(tablero, n);
-        agregarCasillaAleatoria(tablero, n);
-        break;
-
-      case 'd':
-        moverDerecha(tablero);
-        agregarCasillaAleatoria(tablero, n);
-        agregarCasillaAleatoria(tablero, n);
-        break;
-
-      case 'w':
-        moverArriba(tablero);
-        agregarCasillaAleatoria(tablero, n);
-        agregarCasillaAleatoria(tablero, n);
-        break;
-
-      case 's':
-        moverAbajo(tablero);
-        agregarCasillaAleatoria(tablero, n);
-        agregarCasillaAleatoria(tablero, n);
-        break;
-
-      case 'q':
-        printf("¡Gracias por jugar!\n");
-        destruirTablero(tablero);
-        return 0;
-
-      default:
-        printf("Opcion no valida\n");
-    }
   }
-
   return 0;
 }
