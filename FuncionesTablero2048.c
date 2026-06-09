@@ -194,14 +194,14 @@ int verificarVictoria(Tablero t) {
     for (int i = 0; i < t.dimension; i++) {
         for (int j = 0; j < t.dimension; j++) {
             if (t.celdas[i][j] == 2048) {
-                return 1;  // Victoria
+                return 1; 
             }
         }
     }
-    return 0;  // No hay victoria aún
+    return 0;  
 }
 
-// VERIFICAR TABLERO LLENO - Retorna 1 si todas las celdas están ocupadas
+// VERIFICAR TABLERO LLENO 
 int tableroLleno(Tablero t) {
     for (int i = 0; i < t.dimension; i++) {
         for (int j = 0; j < t.dimension; j++) {
@@ -213,7 +213,7 @@ int tableroLleno(Tablero t) {
     return 1;  // Tablero lleno
 }
 
-// VERIFICAR DERROTA - Retorna 1 si no hay movimientos posibles
+// VERIFICAR DERROTA 
 int verificarDerrota(Tablero t)
 {
     if (!tableroLleno(t))
