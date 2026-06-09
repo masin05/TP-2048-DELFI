@@ -57,7 +57,7 @@ void agregarCasillaAleatoria(Tablero t, int n) {
 }
 
 // Función auxiliar para comprimir una fila (eliminar ceros)
-static void comprimirFila(int *fila, int n) {
+void comprimirFila(int *fila, int n) {
     int temp[n];
     int indice = 0;
     
@@ -80,7 +80,7 @@ static void comprimirFila(int *fila, int n) {
 }
 
 // Función auxiliar para fusionar valores iguales en una fila
-static void fusionarFila(int *fila, int n) {
+void fusionarFila(int *fila, int n) {
     for (int i = 0; i < n - 1; i++) {
         if (fila[i] != 0 && fila[i] == fila[i + 1]) {
             fila[i] *= 2;
