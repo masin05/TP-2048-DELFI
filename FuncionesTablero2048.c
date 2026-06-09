@@ -114,9 +114,9 @@ void moverDerecha(Tablero t) {
         comprimirFila(t.celdas[i], t.dimension);
         // Fusionar
         fusionarFila(t.celdas[i], t.dimension);
-        // Comprimir nuevamente
+        // Comprimir 
         comprimirFila(t.celdas[i], t.dimension);
-        // Invertir de vuelta
+        // Invertir 
         for (int j = 0; j < t.dimension / 2; j++) {
             int temp = t.celdas[i][j];
             t.celdas[i][j] = t.celdas[i][t.dimension - 1 - j];
