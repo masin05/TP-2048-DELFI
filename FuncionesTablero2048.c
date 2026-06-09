@@ -175,21 +175,21 @@ void moverAbajo(Tablero t) {
         // Comprimir denuevo
         comprimirFila(columna, t.dimension);
         
-        // Invertir columna de vuelta
+        // Invertir columna 
         for (int i = 0; i < t.dimension / 2; i++) {
             int temp = columna[i];
             columna[i] = columna[t.dimension - 1 - i];
             columna[t.dimension - 1 - i] = temp;
         }
         
-        // Poner columna de vuelta
+        // Poner columna 
         for (int i = 0; i < t.dimension; i++) {
             t.celdas[i][j] = columna[i];
         }
     }
 }
 
-// VERIFICAR VICTORIA - Busca si existe un 2048 en el tablero
+// VERIFICAR VICTORIA, Busca si existe un 2048 en el tablero
 int verificarVictoria(Tablero t) {
     for (int i = 0; i < t.dimension; i++) {
         for (int j = 0; j < t.dimension; j++) {
@@ -206,11 +206,11 @@ int tableroLleno(Tablero t) {
     for (int i = 0; i < t.dimension; i++) {
         for (int j = 0; j < t.dimension; j++) {
             if (t.celdas[i][j] == 0) {
-                return 0;  // Hay celdas vacías
+                return 0;  
             }
         }
     }
-    return 1;  // Tablero lleno
+    return 1; 
 }
 
 // VERIFICAR DERROTA 
