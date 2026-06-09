@@ -61,19 +61,19 @@ void comprimirFila(int *fila, int n) {
     int temp[n];
     int indice = 0;
     
-    // Copiar valores no cero a temp
+
     for (int i = 0; i < n; i++) {
         if (fila[i] != 0) {
             temp[indice++] = fila[i];
         }
     }
     
-    // Llenar el resto con ceros
+
     while (indice < n) {
         temp[indice++] = 0;
     }
     
-    // Copiar de vuelta a la fila original
+
     for (int i = 0; i < n; i++) {
         fila[i] = temp[i];
     }
