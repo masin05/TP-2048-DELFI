@@ -92,11 +92,11 @@ void fusionarFila(int *fila, int n) {
 // MOVER A LA IZQUIERDA
 void moverIzquierda(Tablero t) {
     for (int i = 0; i < t.dimension; i++) {
-        // Comprimir la fila (eliminar ceros)
+        // Comprimir
         comprimirFila(t.celdas[i], t.dimension);
-        // Fusionar valores iguales
+        // Fusionar 
         fusionarFila(t.celdas[i], t.dimension);
-        // Comprimir nuevamente después de fusionar
+        // Comprimir
         comprimirFila(t.celdas[i], t.dimension);
     }
 }
@@ -104,7 +104,7 @@ void moverIzquierda(Tablero t) {
 // MOVER A LA DERECHA
 void moverDerecha(Tablero t) {
     for (int i = 0; i < t.dimension; i++) {
-        // Invertir la fila
+ 
         for (int j = 0; j < t.dimension / 2; j++) {
             int temp = t.celdas[i][j];
             t.celdas[i][j] = t.celdas[i][t.dimension - 1 - j];
@@ -127,11 +127,11 @@ void moverDerecha(Tablero t) {
 
 // MOVER ARRIBA
 void moverArriba(Tablero t) {
-    // Trabajar por columnas
+
     for (int j = 0; j < t.dimension; j++) {
         int columna[t.dimension];
         
-        // Extraer columna
+  
         for (int i = 0; i < t.dimension; i++) {
             columna[i] = t.celdas[i][j];
         }
@@ -140,10 +140,10 @@ void moverArriba(Tablero t) {
         comprimirFila(columna, t.dimension);
         // Fusionar
         fusionarFila(columna, t.dimension);
-        // Comprimir nuevamente
+        // Comprimir 
         comprimirFila(columna, t.dimension);
         
-        // Poner columna de vuelta
+
         for (int i = 0; i < t.dimension; i++) {
             t.celdas[i][j] = columna[i];
         }
@@ -152,16 +152,16 @@ void moverArriba(Tablero t) {
 
 // MOVER ABAJO
 void moverAbajo(Tablero t) {
-    // Trabajar por columnas
+
     for (int j = 0; j < t.dimension; j++) {
         int columna[t.dimension];
         
-        // Extraer columna
+
         for (int i = 0; i < t.dimension; i++) {
             columna[i] = t.celdas[i][j];
         }
         
-        // Invertir columna
+ 
         for (int i = 0; i < t.dimension / 2; i++) {
             int temp = columna[i];
             columna[i] = columna[t.dimension - 1 - i];
@@ -172,17 +172,17 @@ void moverAbajo(Tablero t) {
         comprimirFila(columna, t.dimension);
         // Fusionar
         fusionarFila(columna, t.dimension);
-        // Comprimir denuevo
+        // Comprimir 
         comprimirFila(columna, t.dimension);
         
-        // Invertir columna 
+
         for (int i = 0; i < t.dimension / 2; i++) {
             int temp = columna[i];
             columna[i] = columna[t.dimension - 1 - i];
             columna[t.dimension - 1 - i] = temp;
         }
         
-        // Poner columna 
+
         for (int i = 0; i < t.dimension; i++) {
             t.celdas[i][j] = columna[i];
         }
