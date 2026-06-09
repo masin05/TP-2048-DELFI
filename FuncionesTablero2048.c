@@ -236,3 +236,16 @@ int verificarDerrota(Tablero t)
     }
     return 1;
 }
+
+Tablero copiarTablero(Tablero original){
+    Tablero copia;
+    copia.dimension = original.dimension;
+    copia.celdas = malloc(original.dimension * sizeof(int*));
+    for (int i = 0; i < copia.dimension; i++){
+        copia.celdas[i] = malloc(original.dimension * sizeof(int));
+        for(int j = 0; j < copia.dimension; j++){
+            copia.celdas[i][j] = original.celdas [i][j];
+        }
+    }
+    return copia;
+}
