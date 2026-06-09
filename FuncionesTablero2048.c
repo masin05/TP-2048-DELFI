@@ -17,7 +17,7 @@ Tablero crearTablero(int n) {
     return t;
 }
 
-// Destruir el tablero y liberar espacio en memoria
+// Destruir el tablero y libera espacio en memoria
 void destruirTablero(Tablero t) {
     for (int i = 0; i < t.dimension; i++) {
         free(t.celdas[i]);
@@ -56,7 +56,7 @@ void agregarCasillaAleatoria(Tablero t, int n) {
     t.celdas[fila][columna] = valor;
 }
 
-// Función auxiliar para comprimir una fila (eliminar ceros)
+// elimina los 0 de la fila 
 void comprimirFila(int *fila, int n) {
     int temp[n];
     int indice = 0;
