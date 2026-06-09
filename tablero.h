@@ -8,14 +8,15 @@ typedef struct {
 
 Tablero crearTablero(int n);
 void destruirTablero(Tablero t);
-
 void mostrarTablero(Tablero t);
+
 void agregarCasillaAleatoria(Tablero t, int n);
 
 void moverIzquierda(Tablero t);
 void moverDerecha(Tablero t);
 void moverArriba(Tablero t);
 void moverAbajo(Tablero t);
+Tablero deshacerMovimiento(Tablero t);
 
 // Funciones de control de juego
 int verificarVictoria(Tablero t);  // Retorna 1 si hay un 2048, 0 si no
