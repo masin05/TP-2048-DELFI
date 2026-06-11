@@ -3,7 +3,7 @@ typedef struct Nodo {
   struct Nodo *sig;
 } Nodo;
 
-Typedef struct {
+typedef struct {
   Nodo *tope;
 } Pila
 
