@@ -89,107 +89,50 @@ void fusionarFila(int *fila, int n) {
     }
 }
 
-// MOVER A LA IZQUIERDA
-void moverIzquierda(Tablero t) {
-    for (int i = 0; i < t.dimension; i++) {
-        // Comprimir
-        comprimirFila(t.celdas[i], t.dimension);
-        // Fusionar 
-        fusionarFila(t.celdas[i], t.dimension);
-        // Comprimir
-        comprimirFila(t.celdas[i], t.dimension);
-    }
-}
+//MOVER HORIZONTAL: dir = Izquierda -1, derecha 1
 
-// MOVER A LA DERECHA
-void moverDerecha(Tablero t) {
-    for (int i = 0; i < t.dimension; i++) {
- 
-        for (int j = 0; j < t.dimension / 2; j++) {
-            int temp = t.celdas[i][j];
-            t.celdas[i][j] = t.celdas[i][t.dimension - 1 - j];
-            t.celdas[i][t.dimension - 1 - j] = temp;
+void moverHorizontal(Tablero t, int direccion)
+{
+    for (int fila = 0; fila < t.dimension; fila++)
+    {
+        if (direccion == -1)
+        {
+            compactarFila(fila, direccion, t);
+            fusionarFila(fila, direccion, t);
+            compactarFila(fila, direccion, t);
         }
-        // Comprimir
-        comprimirFila(t.celdas[i], t.dimension);
-        // Fusionar
-        fusionarFila(t.celdas[i], t.dimension);
-        // Comprimir 
-        comprimirFila(t.celdas[i], t.dimension);
-        // Invertir 
-        for (int j = 0; j < t.dimension / 2; j++) {
-            int temp = t.celdas[i][j];
-            t.celdas[i][j] = t.celdas[i][t.dimension - 1 - j];
-            t.celdas[i][t.dimension - 1 - j] = temp;
+        else
+        {
+            compactarFila(fila, direccion, t);
+            fusionarFila(fila, direccion, t);
+            compactarFila(fila, direccion, t);
         }
     }
 }
 
-// MOVER ARRIBA
-void moverArriba(Tablero t) {
+//MOVER VERTICAL: dir = abajo 1, arriba -1
 
-    for (int j = 0; j < t.dimension; j++) {
-        int columna[t.dimension];
-        
-  
-        for (int i = 0; i < t.dimension; i++) {
-            columna[i] = t.celdas[i][j];
+void moverVertical(Tablero t, int direccion)
+{
+    for (int fila = 0; fila < t.dimension; fila++)
+    {
+        if (direccion == -1)
+        {
+            compactarFila(columna, direccion, t);
+            fusionarFila(columna, direccion, t);
+            compactarFila(columna, direccion, t);
         }
-        
-        // Comprimir
-        comprimirFila(columna, t.dimension);
-        // Fusionar
-        fusionarFila(columna, t.dimension);
-        // Comprimir 
-        comprimirFila(columna, t.dimension);
-        
-
-        for (int i = 0; i < t.dimension; i++) {
-            t.celdas[i][j] = columna[i];
-        }
-    }
-}
-
-// MOVER ABAJO
-void moverAbajo(Tablero t) {
-
-    for (int j = 0; j < t.dimension; j++) {
-        int columna[t.dimension];
-        
-
-        for (int i = 0; i < t.dimension; i++) {
-            columna[i] = t.celdas[i][j];
-        }
-        
- 
-        for (int i = 0; i < t.dimension / 2; i++) {
-            int temp = columna[i];
-            columna[i] = columna[t.dimension - 1 - i];
-            columna[t.dimension - 1 - i] = temp;
-        }
-        
-        // Comprimir
-        comprimirFila(columna, t.dimension);
-        // Fusionar
-        fusionarFila(columna, t.dimension);
-        // Comprimir 
-        comprimirFila(columna, t.dimension);
-        
-
-        for (int i = 0; i < t.dimension / 2; i++) {
-            int temp = columna[i];
-            columna[i] = columna[t.dimension - 1 - i];
-            columna[t.dimension - 1 - i] = temp;
-        }
-        
-
-        for (int i = 0; i < t.dimension; i++) {
-            t.celdas[i][j] = columna[i];
+        else
+        {
+            compactarFila(columna, direccion, t);
+            fusionarFila(columna, direccion, t);
+            compactarFila(columna, direccion, t);
         }
     }
 }
 
 // VERIFICAR VICTORIA, Busca si existe un 2048 en el tablero
+
 int verificarVictoria(Tablero t) {
     for (int i = 0; i < t.dimension; i++) {
         for (int j = 0; j < t.dimension; j++) {
