@@ -12,10 +12,8 @@ void mostrarTablero(Tablero t);
 
 void agregarCasillaAleatoria(Tablero t, int n);
 
-void moverIzquierda(Tablero t);
-void moverDerecha(Tablero t);
-void moverArriba(Tablero t);
-void moverAbajo(Tablero t);
+void moverHorizontal(Tablero t, int direccion);
+void moverVertical(Tablero t, int direccion);
 
 // Funciones de control de juego
 int verificarVictoria(Tablero t); 
