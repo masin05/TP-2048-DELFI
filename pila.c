@@ -1,3 +1,8 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "pila.h"
+
 Pila crearPila (){
   Pila p;
   p.tope = NULL;
