@@ -1,3 +1,8 @@
+#ifndef PILA_H
+#define PILA_H
+
+#include "tablero.h"
+
 typedef struct Nodo {
   Tablero estado;
   struct Nodo *sig;
@@ -5,7 +10,7 @@ typedef struct Nodo {
 
 typedef struct {
   Nodo *tope;
-} Pila
+} Pila;
 
 Pila crearPila();
 
@@ -14,3 +19,5 @@ int pilaVacia(Pila p);
 void apilar(Pila *p, Tablero t);
 
 Tablero desapilar(Pila *p);
+
+#endif
