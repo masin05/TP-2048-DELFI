@@ -22,5 +22,5 @@ int verificarVictoria(Tablero t);
 int verificarDerrota(Tablero t);  
 int tableroLleno(Tablero t);     
 
-Tablero copiarTablero(Tablero t);
+Tablero copiarTablero(Tablero original);
 #endif
