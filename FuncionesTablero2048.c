@@ -1,4 +1,5 @@
 #include "tablero.h"
+#include "pila.h"
 #include <stdio.h>
 #include <stdlib.h>
 
