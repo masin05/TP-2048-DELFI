@@ -3,6 +3,7 @@
 #include <time.h>
 
 #include "tablero.h"
+#include "pila.h"
 
 int main()
 {
