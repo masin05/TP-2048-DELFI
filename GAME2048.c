@@ -28,7 +28,7 @@ int main(){
   printf("  d - Mover derecha\n");
   printf("  w - Mover arriba\n");
   printf("  s - Mover abajo\n");
-  printf("  q - Salir\n\n");
+  printf("  u - Retrocedes\n\n");
 
   while (1) {
     mostrarTablero(tablero);
