@@ -16,6 +16,7 @@ int main()
   srand(time(NULL));
 
   Tablero tablero = crearTablero(n);
+  Pila historial = crearPila();
 
   agregarCasillaAleatoria(tablero, n);
   agregarCasillaAleatoria(tablero, n);
@@ -33,26 +34,30 @@ int main()
     mostrarTablero(tablero);
     printf("Ingrese su movimiento (a/d/w/s/q): ");
     scanf(" %c", &opcion);
+
+    if (opcion == 'a' || opcion == 'd' || opcion == 'w' || opcion == 's') {
+        apilar(&historial, tablero);
+    }
     
     switch (opcion) {
 
       case 'a':
-        moverIzquierda(tablero);
+        moverHorizontal(tablero, -1);
         agregarCasillaAleatoria(tablero, n);
         break;
 
       case 'd':
-        moverDerecha(tablero);
+        moverHorizontal(tablero, 1);
         agregarCasillaAleatoria(tablero, n);
         break;
 
       case 'w':
-        moverArriba(tablero);
+        moverVertical(tablero, -1);
         agregarCasillaAleatoria(tablero, n);
         break;
 
       case 's':
-        moverAbajo(tablero);
+        moverVertical(tablero, 1);
         agregarCasillaAleatoria(tablero, n);
         break;
       
