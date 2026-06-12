@@ -1,5 +1,6 @@
 #include "tablero.h"
 #include "pila.h"
+#include "pila.c"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -196,8 +197,7 @@ Tablero copiarTablero(Tablero original){
 }
 
 int deshacerMovimiento(Pila *historial, Tablero *tablero){
-    if(pilaVacia(historial))
-    {
+    if(pilaVacia(historial)){
         printf("No hay movimientos para deshacer\n");
         return 0;
     }

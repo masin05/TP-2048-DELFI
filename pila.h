@@ -14,12 +14,12 @@ typedef struct {
 
 Pila crearPila();
 
-int pilaVacia(Pila p);
+int pilaVacia(Pila *p);
 
 void apilar(Pila *p, Tablero t);
 
 Tablero desapilar(Pila *p);
 
-int deshacerMovimiento(Pila *historial, Tablero *tablero)
+int deshacerMovimiento(Pila *historial, Tablero *tablero);
 
 #endif

@@ -4,9 +4,9 @@
 
 #include "tablero.h"
 #include "pila.h"
+#include "FuncionesTablero2048.c"
 
-int main()
-{
+int main(){
   int n;
 
   printf("---- 2048 GAME ----\n");

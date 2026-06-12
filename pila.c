@@ -9,8 +9,8 @@ Pila crearPila (){
   return p;
 }
 
-int pilaVacia (Pila p){
-  return p.tope == NULL;
+int pilaVacia(Pila *p){
+  return p->tope == NULL;
 }
 
 void apilar(Pila *p, Tablero t){
@@ -25,7 +25,7 @@ void apilar(Pila *p, Tablero t){
 }
 
 Tablero desapilar(Pila *p){
-    if (pilaVacia(*p)){
+    if (pilaVacia(p)){
         printf("La pila esta vacia\n");
         exit(1);
     }
