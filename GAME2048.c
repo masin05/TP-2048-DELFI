@@ -24,11 +24,11 @@ int main(){
   char opcion;
   
   printf("\nControles:\n");
-  printf("  a - Mover izquierda\n");
-  printf("  d - Mover derecha\n");
-  printf("  w - Mover arriba\n");
-  printf("  s - Mover abajo\n");
-  printf("  u - Retrocedes\n\n");
+  printf("  a - Mover izquierda \n");
+  printf("  d - Mover derecha \n");
+  printf("  w - Mover arriba \n");
+  printf("  s - Mover abajo \n");
+  printf("  u - Retroceder \n\n");
 
   while (1) {
     mostrarTablero(tablero);
