@@ -24,6 +24,5 @@ int verificarDerrota(Tablero t);
 int tableroLleno(Tablero t);     
 
 Tablero copiarTablero(Tablero original);
-int DeshacerMovimiento(Pila *historial, Tablero *tablero)
 
 #endif
