@@ -20,4 +20,6 @@ void apilar(Pila *p, Tablero t);
 
 Tablero desapilar(Pila *p);
 
+int deshacerMovimiento(Pila *historial, Tablero *tablero)
+
 #endif
