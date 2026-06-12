@@ -57,78 +57,79 @@ void agregarCasillaAleatoria(Tablero t, int n) {
 }
 
 // elimina los 0 de la fila 
-void comprimirFila(int *fila, int n) {
-    int temp[n];
-    int indice = 0;
-    
 
-    for (int i = 0; i < n; i++) {
-        if (fila[i] != 0) {
-            temp[indice++] = fila[i];
-        }
-    }
-    
-
-    while (indice < n) {
-        temp[indice++] = 0;
-    }
-    
-
-    for (int i = 0; i < n; i++) {
-        fila[i] = temp[i];
+void invertirLinea(int *linea, int n) {
+    for (int i = 0; i < n / 2; i++) {
+        int temp = linea[i];
+        linea[i] = linea[n - 1 - i];
+        linea[n - 1 - i] = temp;
     }
 }
 
-// Función auxiliar para fusionar valores iguales en una fila
-void fusionarFila(int *fila, int n) {
+void comprimirLinea(int *linea, int n) {
+    int indice = 0;
+    for (int i = 0; i < n; i++) {
+        if (linea[i] != 0) {
+            linea[indice] = linea[i];
+            indice++;
+        }
+    }
+    while (indice < n) {
+        linea[indice] = 0;
+        indice++;
+    }
+}
+
+void fusionarLinea(int *linea, int n) {
     for (int i = 0; i < n - 1; i++) {
-        if (fila[i] != 0 && fila[i] == fila[i + 1]) {
-            fila[i] *= 2;
-            fila[i + 1] = 0;
+        if (linea[i] != 0 && linea[i] == linea[i + 1]) {
+            linea[i] *= 2;
+            linea[i + 1] = 0;
         }
     }
 }
 
 //MOVER HORIZONTAL: dir = Izquierda -1, derecha 1
 
-void moverHorizontal(Tablero t, int direccion)
-{
-    for (int fila = 0; fila < t.dimension; fila++)
-    {
-        if (direccion == -1)
-        {
-            compactarFila(fila, direccion, t);
-            fusionarFila(fila, direccion, t);
-            compactarFila(fila, direccion, t);
-        }
-        else
-        {
-            compactarFila(fila, direccion, t);
-            fusionarFila(fila, direccion, t);
-            compactarFila(fila, direccion, t);
-        }
+void moverHorizontal(Tablero t, int direccion) {
+    for (int i = 0; i < t.dimension; i++) {
+        int *fila = t.celdas[i];
+        
+        // Si vamos a la derecha, invertimos para tratarlo como si fuera izquierda
+        if (direccion == 1) invertirLinea(fila, t.dimension);
+        
+        // La secuencia magica de 2048
+        comprimirLinea(fila, t.dimension);
+        fusionarLinea(fila, t.dimension);
+        comprimirLinea(fila, t.dimension); // Comprimir de nuevo por si la fusion dejo huecos
+        
+        // Devolvemos la fila a su orientacion original si fuimos a la derecha
+        if (direccion == 1) invertirLinea(fila, t.dimension);
     }
 }
-
 //MOVER VERTICAL: dir = abajo 1, arriba -1
 
-void moverVertical(Tablero t, int direccion)
-{
-    for (int fila = 0; fila < t.dimension; fila++)
-    {
-        if (direccion == -1)
-        {
-            compactarFila(columna, direccion, t);
-            fusionarFila(columna, direccion, t);
-            compactarFila(columna, direccion, t);
+void moverVertical(Tablero t, int direccion) {
+    int *columna = (int *)malloc(t.dimension * sizeof(int));
+    
+    for (int j = 0; j < t.dimension; j++) {
+        // Extraer la columna
+        for (int i = 0; i < t.dimension; i++) {
+            columna[i] = t.celdas[i][j];
         }
-        else
-        {
-            compactarFila(columna, direccion, t);
-            fusionarFila(columna, direccion, t);
-            compactarFila(columna, direccion, t);
+        if (direccion == 1) invertirLinea(columna, t.dimension);
+        
+        comprimirLinea(columna, t.dimension);
+        fusionarLinea(columna, t.dimension);
+        comprimirLinea(columna, t.dimension);
+        
+        if (direccion == 1) invertirLinea(columna, t.dimension);
+        // Volver a guardar la columna en el tablero
+        for (int i = 0; i < t.dimension; i++) {
+            t.celdas[i][j] = columna[i];
         }
     }
+    free(columna);
 }
 
 // VERIFICAR VICTORIA, Busca si existe un 2048 en el tablero
