@@ -56,7 +56,8 @@ int main()
         break;
       
       case 'u':
-        //deshacerMovimiento();
+        deshacerMovimiento(&historial,&tablero);
+        break;
 
       default:
         printf("Opcion no valida\n");
