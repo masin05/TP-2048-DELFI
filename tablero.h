@@ -12,10 +12,13 @@ void mostrarTablero(Tablero t);
 
 void agregarCasillaAleatoria(Tablero t, int n);
 
+void invertirLinea(int *linea, int n);
+void comprimirLinea(int *linea, int n);
+void fusionarLinea(int *linea, int n);
+
 void moverHorizontal(Tablero t, int direccion);
 void moverVertical(Tablero t, int direccion);
 
-// Funciones de control de juego
 int verificarVictoria(Tablero t); 
 int verificarDerrota(Tablero t);  
 int tableroLleno(Tablero t);     
