@@ -193,3 +193,14 @@ Tablero copiarTablero(Tablero original){
     }
     return copia;
 }
+
+int deshacerMovimiento(Pila *historial, Tablero *tablero){
+    if(pilaVacia(historial))
+    {
+        printf("No hay movimientos para deshacer\n");
+        return 0;
+    }
+    destruirTablero(*tablero);
+    *tablero = desapilar(historial);
+    return 1;
+}
