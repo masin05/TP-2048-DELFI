@@ -32,7 +32,7 @@ int main(){
 
   while (1) {
     mostrarTablero(tablero);
-    printf("Ingrese su movimiento (a/d/w/s/q): ");
+    printf("Ingrese su movimiento (a/d/w/s/u): ");
     scanf(" %c", &opcion);
 
     if (opcion == 'a' || opcion == 'd' || opcion == 'w' || opcion == 's') {
